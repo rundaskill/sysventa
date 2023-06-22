@@ -4,7 +4,7 @@ import { PowerBIReportEmbedComponent } from 'powerbi-client-angular';
 import { IHttpPostMessageResponse } from 'http-post-message';
 import { environment } from 'src/environments/environment';
 import { PowerBIService } from './services/PowerBi/PowerBI.service';
-
+import Swal from 'sweetalert2'
 export interface ConfigResponse {
   Id: string;
   EmbedUrl: string;
@@ -69,6 +69,11 @@ export class AppComponent implements AfterViewInit {
     }],
     ['error', (event?: service.ICustomEvent<any>) => {
         if (event) {
+          Swal.fire({
+            title:"Expired token",
+            icon:"info",
+            text:"contact admin"
+          })
           console.error(event.detail);
         }
       },
